@@ -5,7 +5,7 @@ export default function Home() {
     <main className="flex justify-center items-center size-full flex-col gap-5 bg-blue-500 ">
       
 
-      <Button>Click me</Button>
+      <Button variant={'destructive'}>Click me</Button>
       <Button>Click me</Button>
 
       
