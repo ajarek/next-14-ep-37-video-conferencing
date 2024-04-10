@@ -8,10 +8,10 @@ const DateTime = () => {
 
   return (
     
-      <div className=" h-[200px] w-full rounded-[20px] bg-hero bg-cover ">
-        <div className="flex h-full flex-col justify-between max-md:px-5 max-md:py-8 lg:py-4 lg:px-11">
+      <div className=" h-[200px] w-full rounded-[20px] ">
+        <div className="flex h-full flex-col justify-between py-4 ">
           <h2 className="glassmorphism max-w-[273px] rounded py-2 text-center text-base font-normal">
-            Upcoming Meeting at: 12:30 PM
+            Upcoming Meeting at {time} 
           </h2>
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl font-extrabold lg:text-7xl">{time}</h1>
