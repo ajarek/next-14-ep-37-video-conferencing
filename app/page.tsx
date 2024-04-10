@@ -1,14 +1,21 @@
-import { Button } from "@/components/ui/button"
+import DateTime from "@/components/DateTime";
+import HomeCardProps from "@/components/HomeCardProps";
 
 export default function Home() {
+  
   return (
-    <main className="flex justify-center items-center size-full flex-col gap-5 bg-blue-500 ">
+    <section className="flex min-h-[calc(100vh-136px)] flex-col gap-4  text-white  ">
       
 
-      <Button variant={'destructive'}>Click me</Button>
-      <Button>Click me</Button>
+      <DateTime/>
+      <div className="grid grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-4">
 
+      <HomeCardProps bg={'bg-orange-1'}/>
+      <HomeCardProps bg={'bg-blue-1'}/>
+      <HomeCardProps bg={'bg-purple-1'}/>
+      <HomeCardProps bg={'bg-yellow-1'}/>
+      </div>
       
-    </main>
+    </section>
   );
 }

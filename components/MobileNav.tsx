@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -8,8 +9,10 @@ import {
   SheetHeader,
 } from '@/components/ui/sheet'
 import { linkBoard } from '@/data/linkBoard'
+import { usePathname } from 'next/navigation'
 
 const MobileNav = () => {
+  const pathname = usePathname()
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -49,7 +52,9 @@ const MobileNav = () => {
         <Link
           href={url}
           key={id}
-          className="flex items-center gap-4"
+          className={`flex items-center gap-4 hover:bg-blue-500 rounded-sm px-4 py-1 transition ${
+            pathname === url ? 'active ' : 'px-4'
+          }`}
         >
           <Image
             src={urlIcon}

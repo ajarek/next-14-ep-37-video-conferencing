@@ -76,4 +76,13 @@
     .flex-between {
       @apply flex justify-between items-center;
     }
+    .active{
+      @apply bg-blue-500 text-primary-foreground  ;
+    }
+    
+  }
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
