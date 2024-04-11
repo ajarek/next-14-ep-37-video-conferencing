@@ -38,10 +38,10 @@ const RegisterForm = () => {
   }
 
   return (
-    <div className=''>
+    <div className='w-full flex flex-col justify-center items-center 1'>
       <h1 className='text-3xl text-center text-white font-bold mb-4'>Rejestracja</h1>
       <form
-        className='w-80  flex flex-col gap-4 p-6 shadow-xl border-2 rounded-sm '
+        className='w-full max-w-96  flex flex-col gap-4 p-8 shadow-xl border-2 border-blue-1 rounded-lg '
         onSubmit={handleSubmit}
       >
         <Input

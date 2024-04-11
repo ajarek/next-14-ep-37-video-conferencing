@@ -6,8 +6,10 @@ export default function Home() {
   return (
     <section className="flex min-h-[calc(100vh-136px)] flex-col gap-4  text-white  ">
       
-
+      <div className="bg-image px-4">
       <DateTime/>
+
+      </div>
       <div className="grid grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-4">
 
       <HomeCardProps bg={'bg-orange-1'} title="New Meeting" desc="Start an instant meeting" src="/icons/add-meeting.svg"/>

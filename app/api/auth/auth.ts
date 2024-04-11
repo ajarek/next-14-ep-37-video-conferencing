@@ -11,6 +11,12 @@ export const {
   pages: {
     error: '/register',
   },
+  theme: {
+    colorScheme: "dark", // "auto" | "dark" | "light"
+    brandColor: "#0E78F9", // Hex color code
+    logo: "/icons/circle-user-round.svg", // Absolute URL to image
+    buttonText: "#ffffff" // Hex color code
+  },
 
   providers: [
     GitHub({

@@ -15,6 +15,7 @@ const Navbar = async () => {
           width={32}
           height={32}
           className="max-sm:size-10"
+          priority
         />
         <p className="text-[26px] font-extrabold text-white max-sm:hidden">
           ZOOM

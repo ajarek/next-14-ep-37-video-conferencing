@@ -12,7 +12,7 @@ const Links = () => {
         <Link
           href={url}
           key={id}
-          className={`flex items-center gap-4 hover:bg-blue-500 rounded-sm px-4 py-1 transition ${
+          className={`flex items-center gap-4 hover:bg-blue-500 rounded-sm px-4 py-2 transition ${
             pathname === url ? 'active ' : 'px-4'
           }`}
         >

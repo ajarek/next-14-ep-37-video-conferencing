@@ -8,7 +8,7 @@ const Logout = async ({ session }: any) => {
         <LogoutBtn />
       ) : (
         <Link
-          className='px-4 py-1 bg-primary text-primary-foreground rounded-sm'
+          className='px-4 py-1 bg-blue-1 text-white rounded-sm'
           href={'/register'}
         >
           Zaloguj
