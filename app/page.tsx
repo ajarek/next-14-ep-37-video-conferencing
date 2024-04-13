@@ -6,18 +6,28 @@ import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import MeetingModal from '@/components/MeetingModal'
-import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk';
+import {
+  Call,
+  CallingState,
+  StreamCall,
+  StreamVideo,
+  StreamVideoClient,
+  useCall,
+  useCallStateHooks,
+  User,
+} from '@stream-io/video-react-sdk'
+import { auth } from '@/app/api/auth/auth'
 import { Textarea } from '@/components/ui/textarea'
 import ReactDatePicker from 'react-datepicker'
 import { useToast } from '@/components/ui/use-toast'
 import { Input } from '@/components/ui/input'
 import Loader from '@/app/loading'
-
+import { tokenProvider } from '@/actions/stream.actions'
 const initialValues = {
   dateTime: new Date(),
   description: '',
   link: '',
-};
+}
 export default function Home() {
   const router = useRouter()
   const [meetingState, setMeetingState] = useState<
@@ -25,44 +35,25 @@ export default function Home() {
   >(undefined)
   const [values, setValues] = useState(initialValues)
   const [callDetail, setCallDetail] = useState<Call>()
-  const client = useStreamVideoClient()
-  const { toast } = useToast();
+
+  const { toast } = useToast()
   const createMeeting = async () => {
-  
-     if (!client) return
+    const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string
+    const userId = '125'
+    const token = await tokenProvider()
+    const user: User = { id: userId as string }
+    const client = new StreamVideoClient({ apiKey, user, token })
+    const call = client.call('default', userId)
+   
+
     try {
-      if (!values.dateTime) {
-        toast({ title: 'Please select a date and time' })
-        return
-      }
-      const id = crypto.randomUUID()
-      const call = client.call('default', id)
-      if (!call) throw new Error('Failed to create meeting')
-      const startsAt =
-        values.dateTime.toISOString() || new Date(Date.now()).toISOString()
-      const description = values.description || 'Instant Meeting'
-      await call.getOrCreate({
-        data: {
-          starts_at: startsAt,
-          custom: {
-            description,
-          },
-        },
-      })
-      setCallDetail(call)
-      if (!values.description) {
-        router.push(`/meeting/${call.id}`)
-      }
-      toast({
-        title: 'Meeting Created',
-      })
+      router.push(`/meeting/${call.id}`)
     } catch (error) {
       console.error(error)
-      toast({ title: 'Failed to create Meeting' })
     }
   }
 
-  // if (!client) return <Loader />
+  //  if (!client) return <Loader />
 
   const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`
 
@@ -125,7 +116,9 @@ export default function Home() {
             </label>
             <ReactDatePicker
               selected={values.dateTime}
-              onChange={(date: any) => setValues({ ...values, dateTime: date! })}
+              onChange={(date: any) =>
+                setValues({ ...values, dateTime: date! })
+              }
               showTimeSelect
               timeFormat='HH:mm'
               timeIntervals={15}
@@ -161,7 +154,9 @@ export default function Home() {
       >
         <Input
           placeholder='Meeting link'
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValues({ ...values, link: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setValues({ ...values, link: e.target.value })
+          }
           className='border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0'
         />
       </MeetingModal>
