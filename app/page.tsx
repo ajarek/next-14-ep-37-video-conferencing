@@ -28,6 +28,7 @@ export default function Home() {
   const client = useStreamVideoClient()
   const { toast } = useToast();
   const createMeeting = async () => {
+  
      if (!client) return
     try {
       if (!values.dateTime) {
