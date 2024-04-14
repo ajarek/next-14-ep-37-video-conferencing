@@ -1,28 +1,17 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import DateTime from '@/components/DateTime'
 import HomeCardProps from '@/components/HomeCardProps'
-import { useRouter } from 'next/navigation'
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
 import MeetingModal from '@/components/MeetingModal'
-import {
-  Call,
-  CallingState,
-  StreamCall,
-  StreamVideo,
-  StreamVideoClient,
-  useCall,
-  useCallStateHooks,
-  User,
-} from '@stream-io/video-react-sdk'
-import { auth } from '@/app/api/auth/auth'
+import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk'
+
+import Loader from '@/app/loading'
 import { Textarea } from '@/components/ui/textarea'
 import ReactDatePicker from 'react-datepicker'
 import { useToast } from '@/components/ui/use-toast'
 import { Input } from '@/components/ui/input'
-import Loader from '@/app/loading'
-import { tokenProvider } from '@/actions/stream.actions'
+
 const initialValues = {
   dateTime: new Date(),
   description: '',
@@ -35,25 +24,44 @@ export default function Home() {
   >(undefined)
   const [values, setValues] = useState(initialValues)
   const [callDetail, setCallDetail] = useState<Call>()
-
+  const client = useStreamVideoClient()
+  
   const { toast } = useToast()
   const createMeeting = async () => {
-    const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string
-    const userId = '125'
-    const token = await tokenProvider()
-    const user: User = { id: userId as string }
-    const client = new StreamVideoClient({ apiKey, user, token })
-    const call = client.call('default', userId)
-   
-
+    if (!client ) return
     try {
-      router.push(`/meeting/${call.id}`)
+      if (!values.dateTime) {
+        toast({ title: 'Please select a date and time' })
+        return
+      }
+      const id = '125'
+      const call = client.call('default', id)
+      if (!call) throw new Error('Failed to create meeting')
+      const startsAt =
+        values.dateTime.toISOString() || new Date(Date.now()).toISOString()
+      const description = values.description || 'Instant Meeting'
+      await call.getOrCreate({
+        data: {
+          starts_at: startsAt,
+          custom: {
+            description,
+          },
+        },
+      })
+      setCallDetail(call)
+      if (!values.description) {
+        router.push(`/meeting/${call.id}`)
+      }
+      toast({
+        title: 'Meeting Created',
+      })
     } catch (error) {
       console.error(error)
+      toast({ title: 'Failed to create Meeting' })
     }
   }
 
-  //  if (!client) return <Loader />
+  if (!client) return <Loader />
 
   const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetail?.id}`
 

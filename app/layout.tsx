@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
-
+import StreamVideoProvider from '@/providers/StreamClientProvider'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <StreamVideoProvider>
       <main className="relative bg-dark-2">
       <Navbar />
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         </section>
       </div>
     </main>
+    </StreamVideoProvider>
         </body>
     </html>
   );
