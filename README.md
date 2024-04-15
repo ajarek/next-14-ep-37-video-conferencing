@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+![Zrzut ekranu 2024-04-15 232031](https://github.com/ajarek/next-14-ep-37-video-conferencing/assets/61388692/ebd38089-5fcb-4cc1-a193-78dd105ac902)
+![Zrzut ekranu 2024-04-15 233108](https://github.com/ajarek/next-14-ep-37-video-conferencing/assets/61388692/e076b813-e74c-4481-9d4d-c1b980fcaacd)
+![Zrzut ekranu 2024-04-15 232104](https://github.com/ajarek/next-14-ep-37-video-conferencing/assets/61388692/80634120-2682-4f93-8ce4-048e81c29310)
+![Zrzut ekranu 2024-04-15 232306](https://github.com/ajarek/next-14-ep-37-video-conferencing/assets/61388692/462b223f-1d75-446e-ab79-69b0fedc0398)
+![Zrzut ekranu 2024-04-15 231918](https://github.com/ajarek/next-14-ep-37-video-conferencing/assets/61388692/88b430a6-d00c-40cc-912b-3201b823fcdd)
+
 ## Getting Started
 
 First, run the development server:
