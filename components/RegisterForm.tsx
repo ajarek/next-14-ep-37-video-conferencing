@@ -46,7 +46,7 @@ const RegisterForm = () => {
       >
         <Input
           type='text'
-          placeholder='Nazwisko i Imię'
+          placeholder='Username'
           value={username}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
         />
@@ -58,13 +58,13 @@ const RegisterForm = () => {
         />
         <Input
           type='password'
-          placeholder='hasło'
+          placeholder='password'
           value={password}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
         />
         <Input
           type='text'
-          placeholder='zdjęcie (niewymagane)'
+          placeholder='photo (not required)'
           value={img}
           onChange={(e) => setImage(e.target.value)}
         />
@@ -77,10 +77,10 @@ const RegisterForm = () => {
           className='bg-blue-1 hover:bg-blue-1/90'
           type='submit'
         >
-          Zarejestruj
+          Register
         </Button>
         <Link href='/api/auth/signin' className='text-white '>
-          Masz konto? <b className='text-blue-1'>Zaloguj</b>
+        Do you have an account? <b className='text-blue-1'>Login</b>
         </Link>
       </form>
     </div>

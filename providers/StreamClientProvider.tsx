@@ -20,7 +20,7 @@ const StreamVideoProvider = ({ children }: { children: any }) => {
   },[token])
   if(token)
   {const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string
-  const userId = '125'
+  const userId = '127'
 
   const user: User = { id: userId as string }
 
