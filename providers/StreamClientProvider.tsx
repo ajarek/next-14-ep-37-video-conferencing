@@ -17,15 +17,16 @@ const StreamVideoProvider = ({ children }: { children: any }) => {
       setToken(newToken)
     }
     addTokenProvider()
-  },[token])
-  if(token)
-  {const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string
-  const userId = '127'
+  }, [token])
+  if (token) {
+    const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string
+    const userId = '127'
 
-  const user: User = { id: userId as string }
+    const user: User = { id: userId as string }
 
-  const client = new StreamVideoClient({ apiKey, user, token })
+    const client = new StreamVideoClient({ apiKey, user, token })
 
-  return <StreamVideo client={client}>{children}</StreamVideo>}
+    return <StreamVideo client={client}>{children}</StreamVideo>
+  }
 }
 export default StreamVideoProvider

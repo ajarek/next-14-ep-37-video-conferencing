@@ -39,7 +39,9 @@ const RegisterForm = () => {
 
   return (
     <div className='w-full flex flex-col justify-center items-center 1'>
-      <h1 className='text-3xl text-center text-white font-bold mb-4'>Rejestracja</h1>
+      <h1 className='text-3xl text-center text-white font-bold mb-4'>
+        Registration
+      </h1>
       <form
         className='w-full max-w-96  flex flex-col gap-4 p-8 shadow-xl border-2 border-blue-1 rounded-lg '
         onSubmit={handleSubmit}
@@ -48,19 +50,25 @@ const RegisterForm = () => {
           type='text'
           placeholder='Username'
           value={username}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setUsername(e.target.value)
+          }
         />
         <Input
           type='email'
           placeholder='email'
           value={email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value)
+          }
         />
         <Input
           type='password'
           placeholder='password'
           value={password}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPassword(e.target.value)
+          }
         />
         <Input
           type='text'
@@ -79,8 +87,11 @@ const RegisterForm = () => {
         >
           Register
         </Button>
-        <Link href='/api/auth/signin' className='text-white '>
-        Do you have an account? <b className='text-blue-1'>Login</b>
+        <Link
+          href='/api/auth/signin'
+          className='text-white '
+        >
+          Do you have an account? <b className='text-blue-1'>Login</b>
         </Link>
       </form>
     </div>

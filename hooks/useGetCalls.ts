@@ -2,27 +2,22 @@ import { useEffect, useState } from 'react'
 import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk'
 
 export const useGetCalls = () => {
- 
   const client = useStreamVideoClient()
   const [calls, setCalls] = useState<Call[]>()
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const loadCalls = async () => {
-      if (!client ) return
+      if (!client) return
 
       setIsLoading(true)
 
       try {
-        // https://getstream.io/video/docs/react/guides/querying-calls/#filters
         const { calls } = await client.queryCalls({
           sort: [{ field: 'starts_at', direction: -1 }],
           filter_conditions: {
             starts_at: { $exists: true },
-            $or: [
-              { created_by_user_id:'127' },
-              { members: { $in: ['127'] } },
-            ],
+            $or: [{ created_by_user_id: '127' }, { members: { $in: ['127'] } }],
           },
         })
 

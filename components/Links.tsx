@@ -1,4 +1,5 @@
 'use client'
+
 import { linkBoard } from '@/data/linkBoard'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,7 +8,7 @@ import { usePathname } from 'next/navigation'
 const Links = () => {
   const pathname = usePathname()
   return (
-    <div className=" h-full flex flex-col  gap-6  ">
+    <div className=' h-full flex flex-col  gap-6  '>
       {linkBoard.map(({ id, urlIcon, label, url }) => (
         <Link
           href={url}

@@ -25,10 +25,10 @@ export default function Home() {
   const [values, setValues] = useState(initialValues)
   const [callDetail, setCallDetail] = useState<Call>()
   const client = useStreamVideoClient()
-  
+
   const { toast } = useToast()
   const createMeeting = async () => {
-    if (!client ) return
+    if (!client) return
     try {
       if (!values.dateTime) {
         toast({ title: 'Please select a date and time' })
